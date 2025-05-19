@@ -46,22 +46,40 @@ for dir_path in [DATA_DIR, TRAINING_DIR, LABEL_DIR, ATTENDANCE_DIR]:
 # Custom CSS
 st.markdown("""
 <style>
+    /* CSS Variables for theming */
+    :root {
+        --background-color: #f8f9fa;
+        --text-color: #1e3d59;
+        --card-background: white;
+        --border-color: #e0e5e9;
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --background-color: #1e1e1e;
+            --text-color: #ffffff;
+            --card-background: #2d2d2d;
+            --border-color: #404040;
+        }
+    }
+
     /* Global Styles */
     .main {
-        background-color: #f8f9fa;
+        background-color: var(--background-color);
+        color: var(--text-color);
     }
     
     /* Title Styles with green highlight */
     .title-text {
         text-align: center;
-        color: #1e3d59;
         padding: 1.5rem;
         border-radius: 1rem;
         margin-bottom: 2rem;
         background: linear-gradient(135deg, #4CAF50 0%, #81c784 100%);
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         border: 1px solid #4CAF50;
-        color: white;
+        color: white !important;
         font-weight: bold;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
@@ -69,7 +87,7 @@ st.markdown("""
     /* Button Styles */
     .stButton > button {
         background-color: #4CAF50;
-        color: white;
+        color: white !important;
         padding: 0.75rem 1.5rem;
         border-radius: 0.5rem;
         border: none;
@@ -77,6 +95,7 @@ st.markdown("""
         font-weight: 600;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
     .stButton > button:hover {
         background-color: #45a049;
         transform: translateY(-2px);
@@ -86,24 +105,27 @@ st.markdown("""
     /* Header Styles */
     .stats-container {
         padding: 1.5rem;
-        background: white;
+        background: var(--card-background);
+        color: var(--text-color);
         border-radius: 1rem;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        border: 1px solid #e0e5e9;
+        border: 1px solid var(--border-color);
         margin-bottom: 1rem;
     }
     
     /* Sidebar Styles */
     .css-1d391kg {
-        background-color: #1e3d59;
+        background-color: var(--card-background);
     }
+
     .css-1d391kg .stSelectbox label {
-        color: white !important;
+        color: var(--text-color) !important;
     }
     
     /* Metric Cards */
     .st-emotion-cache-1xarl3l {
-        background: linear-gradient(135deg, #e8f4ea 0%, #ffffff 100%);
+        background: var(--card-background);
+        color: var(--text-color);
         padding: 1rem;
         border-radius: 0.5rem;
         border: 1px solid #4CAF50;
@@ -112,7 +134,7 @@ st.markdown("""
     /* Success Messages */
     .st-emotion-cache-1rm05kb {
         background-color: #4CAF50;
-        color: white;
+        color: white !important;
         border-radius: 0.5rem;
         padding: 0.75rem;
         margin: 1rem 0;
@@ -121,7 +143,7 @@ st.markdown("""
     /* Error Messages */
     .st-emotion-cache-16idsys {
         background-color: #ff6b6b;
-        color: white;
+        color: white !important;
         border-radius: 0.5rem;
         padding: 0.75rem;
         margin: 1rem 0;
@@ -130,7 +152,7 @@ st.markdown("""
     /* Info Messages */
     .st-emotion-cache-1vbkxwb {
         background-color: #4361ee;
-        color: white;
+        color: white !important;
         border-radius: 0.5rem;
         padding: 0.75rem;
         margin: 1rem 0;
@@ -138,16 +160,19 @@ st.markdown("""
     
     /* DataFrames */
     .st-emotion-cache-1ylmt1q {
+        background: var(--card-background);
+        color: var(--text-color);
         border-radius: 0.5rem;
-        border: 1px solid #e0e5e9;
+        border: 1px solid var(--border-color);
         overflow: hidden;
     }
     
     /* Forms */
     .stTextInput > div > div {
-        background-color: white;
+        background-color: var(--card-background);
+        color: var(--text-color);
         border-radius: 0.5rem;
-        border: 1px solid #e0e5e9;
+        border: 1px solid var(--border-color);
         padding: 0.5rem;
     }
     
@@ -158,9 +183,25 @@ st.markdown("""
     
     /* Date Input */
     .stDateInput > div {
-        background-color: white;
+        background-color: var(--card-background);
+        color: var(--text-color);
         border-radius: 0.5rem;
-        border: 1px solid #e0e5e9;
+        border: 1px solid var(--border-color);
+    }
+
+    /* Additional text color fixes */
+    .stMarkdown, .stText {
+        color: var(--text-color) !important;
+    }
+
+    /* Table text color fix */
+    .dataframe {
+        color: var(--text-color) !important;
+    }
+
+    /* Input text color fix */
+    input, textarea, select {
+        color: var(--text-color) !important;
     }
 </style>
 """, unsafe_allow_html=True)
